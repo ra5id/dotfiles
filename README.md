@@ -1,2 +1,2 @@
 # dotfiles
-my hyprland dotfiles
+My hyprland dotfiles.
