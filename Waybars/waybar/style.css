@@ -73,10 +73,10 @@ tooltip{
 #clock, #network, #battery, #pulseaudio, #custom-notification{
     background: rgba(38, 33, 34, 0.75);
 
-    padding: 0px 10px;        /* 👈 narrower */
+    padding: 0px 10px;       
     margin: 0 0 0 12px;
 
-    border-radius: 10px;       /* 👈 not pills anymore */
+    border-radius: 10px;       
 
     border: 0px solid rgba(214,138,94,0.2);
 
