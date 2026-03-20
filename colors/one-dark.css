@@ -1,0 +1,38 @@
+@define-color bg0 #282c34;
+@define-color bg1 #21252b;
+@define-color bg2 #2c313a;
+@define-color bg3 #3e4451;
+@define-color bg4 #4b5263;
+
+@define-color red    #e08c75;
+@define-color orange #d19a66;
+@define-color yellow #e5c07b;
+@define-color green  #98c379;
+@define-color aqua   #56b6c2;
+@define-color blue   #61afef;
+@define-color purple #c678dd;
+
+@define-color fg #abb2bf;
+
+@define-color grey0 #5c6370;
+@define-color grey1 #828997;
+@define-color grey2 #abb2bf;  
+@define-color myred #D70000;
+
+@define-color base_bg      #1e1a1b; 
+@define-color surface_bg   #262122;
+@define-color overlay_bg   #332c2d;
+
+@define-color clay_red     #af111c; 
+@define-color copper_alt   #d68a5e; 
+@define-color dried_rose   #c47b8a;
+@define-color harvest      #cc9e4d; 
+
+@define-color pine_needle  #6b8e23; 
+@define-color storm_cloud  #5d81ac;
+@define-color dusty_mauve  #a584a3; 
+
+@define-color soft_cream   #e8e1d5; 
+@define-color iron_grey    #63595a; 
+@define-color silver_mist  #9c9293; 
+
