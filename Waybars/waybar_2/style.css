@@ -28,27 +28,27 @@ tooltip{
 }
 
 #workspaces{
-    background: linear-gradient(135deg, @base_bg,#cc231c);
+    background: linear-gradient(135deg, @base_bg,@warm_white);
     padding: 4px 6px;
     margin: 0 0 0 12px;
     border-radius:12px; 
     color: @soft_cream;
 
-    border: 0px solid rgba(214,138,94,0.15);
+    /*border: 0px solid rgba(214,138,94,0.15);*/
 }
 
 #workspaces button {
     padding: 2px 10px;
     margin: 0px 4px;
     border-radius:50px;
-    color: @harvest; 
-    background-color:alpha(@red,0.3);
-    box-shadow:  0 0 8px alpha(black,0.3);
+    color: @soft_cream; 
+    background-color:alpha(@warm_white,0.3);
+    /*box-shadow:  0 0 8px alpha(black,0.3);*/
     transition: all 0.25s ease-in-out;
 }
 
 #workspaces button.active{
-    background: linear-gradient(135deg,#cc231c,@copper_alt);
+    background: linear-gradient(135deg,@warm_white,white);
     color: @base_bg;
     min-width:42px;
 
@@ -58,7 +58,7 @@ tooltip{
 
 #workspaces button:hover{
     background-color: alpha(@red, 0.3);
-    color: orange;
+    color: @soft_cream;
     border-radius:16px;
     min-width:42px;
 }
@@ -81,27 +81,27 @@ tooltip{
     box-shadow: inset 0 0 8px rgba(214,138,94,0.2);
 }
 #clock{
-    background: linear-gradient(225deg, @base_bg,#cc231c);
+    background: linear-gradient(225deg, @base_bg,@warm_white);
     color:#eadbb2;
 }
 
 #network{
-    background: linear-gradient(180deg,@base_bg,#cc231c);
+    background: linear-gradient(180deg,@base_bg,@warm_white);
     color:#eadbb2;
 }
 
 #pulseaudio{
-    background: linear-gradient(360deg,@base_bg,#cc231c);
+    background: linear-gradient(360deg,@base_bg,@warm_white);
     color:#eadbb2;
 }
 
 #battery{
-    background: linear-gradient(0deg,@base_bg,#cc231c);
+    background: linear-gradient(0deg,@base_bg,@warm_white);
     color:#eadbb2;
 }
 
 #custom-notification{
-    background: linear-gradient(180deg, @base_bg,#cc231c);
+    background: linear-gradient(180deg, @base_bg,@warm_white);
     padding: 0px 17px;        
     color:#eadbb2;
     margin: 0 12px 0 12px;
