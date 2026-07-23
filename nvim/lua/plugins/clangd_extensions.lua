@@ -1,3 +1,5 @@
-local lspconfig = require("lspconfig")
-lspconfig.clangd.setup({})
-
+return {
+  {
+    "p00f/clangd_extensions.nvim",
+  }
+}

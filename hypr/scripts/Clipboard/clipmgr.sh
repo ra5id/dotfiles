@@ -11,7 +11,7 @@ THEME="$HOME/.config/rofi/launchers/type-1/style-1.rasi"
 PINNED_FILE="$HOME/.config/rofi/pinned.txt"
 touch "$PINNED_FILE"
 
-# Clean up empty lines immediately
+# Clean empty lines
 sed -i '/^[[:space:]]*$/d' "$PINNED_FILE"
 
 # 3. Main Loop
@@ -24,7 +24,6 @@ while true; do
 
         "History")
             while true; do
-                # 🔥 IMPORTANT: NO cut -f2-
                 selected=$(cliphist list | rofi -dmenu -theme "$THEME" -p "History" \
                     -kb-custom-1 "Alt+p" \
                     -kb-custom-2 "Alt+d")
@@ -33,16 +32,17 @@ while true; do
                 if [ -z "$selected" ]; then break; fi 
 
                 if [ "$exit_code" -eq 10 ]; then
-                    # ✅ Pin FULL content
-                    echo "$selected" | cliphist decode >> "$PINNED_FILE"
+                    # 🔥 Pin safely using base64
+                    entry=$(echo "$selected" | cliphist decode | base64 -w 0)
+                    grep -qxF "$entry" "$PINNED_FILE" || echo "$entry" >> "$PINNED_FILE"
                     notify-send "Clipboard" "Pinned"
 
                 elif [ "$exit_code" -eq 11 ]; then
-                    # ✅ Delete correctly using ID
+                    # Delete from history
                     echo "$selected" | cliphist delete
 
                 else
-                    # ✅ Copy FULL content
+                    # Copy normally
                     echo "$selected" | cliphist decode | wl-copy
                     exit 0
                 fi
@@ -51,17 +51,45 @@ while true; do
 
         "Pinned")
             while true; do
-                selected=$(cat "$PINNED_FILE" | rofi -dmenu -theme "$THEME" -p "Pinned" \
+                # Build preview list (decoded first line)
+                mapfile -t raw < "$PINNED_FILE"
+
+                preview_list=()
+                    for line in "${raw[@]}"; do
+                    decoded=$(printf '%s' "$line" | base64 -d 2>/dev/null)
+                    preview_list+=("$(echo "$decoded" | head -n 1)")
+                done
+
+                selected_preview=$(printf '%s\n' "${preview_list[@]}" | rofi -dmenu -theme "$THEME" -p "Pinned" \
                     -kb-custom-1 "Alt+d")
-                
+
                 exit_code=$?
-                if [ -z "$selected" ]; then break; fi 
+                if [ -z "$selected_preview" ]; then break; fi
+
+                # find matching index
+                index=-1
+                for i in "${!preview_list[@]}"; do
+                    if [ "${preview_list[$i]}" = "$selected_preview" ]; then
+                        index=$i
+                        break
+                    fi
+                done
+
+                [ "$index" -lt 0 ] && continue
+
+                selected="${raw[$index]}"
 
                 if [ "$exit_code" -eq 10 ]; then
-                    grep -vxF "$selected" "$PINNED_FILE" > "$PINNED_FILE.tmp" && mv "$PINNED_FILE.tmp" "$PINNED_FILE"
-                    sed -i '/^[[:space:]]*$/d' "$PINNED_FILE"
+                    tmp=$(mktemp)
+                    for i in "${!raw[@]}"; do
+                        if [ "$i" -ne "$index" ]; then
+                            printf '%s\n' "${raw[$i]}" >> "$tmp"
+                        fi
+                    done
+                    mv "$tmp" "$PINNED_FILE"
+
                 else
-                    echo -n "$selected" | wl-copy
+                    printf '%s' "$selected" | base64 -d | wl-copy
                     exit 0
                 fi
             done

@@ -1,0 +1,67 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+    "logo": {
+        "type": "kitty",
+        "source": "/home/rafid/Pictures/Pikachu.png",
+        "height": 10, // Explicit height helps keep it stable
+        "padding": {
+            "top": 1,
+            "left": 1
+        }
+    },
+
+    "display": {
+        "separator": " ❯ "
+    },
+
+    "modules": [
+        "break",
+
+        {
+            "type": "title",
+            // Red name, White @, Red host
+            "format": "\u001b[38;2;255;0;0m{user-name}\u001b[38;2;255;255;255m@\u001b[38;2;255;0;0m{host-name}\u001b[0m"
+        },
+
+        "break",
+
+        {
+            "type": "os",
+            // Icon: Hot Pink (#FF007F) | Label: Red
+            "key": "\u001b[38;2;255;0;127m󰣇 \u001b[38;2;255;0;0mOS"
+        },
+        {
+            "type": "kernel",
+            // Icon: Deep Coral (#FF4F50) | Label: Red
+            "key": "\u001b[38;2;255;79;80m󰌽 \u001b[38;2;255;0;0mKernel"
+        },
+        {
+            "type": "uptime",
+            // Icon: Neon Orange (#FF8C00) | Label: Red
+            "key": "\u001b[38;2;255;140;0m󰏖 \u001b[38;2;255;0;0mUptime"
+        },
+        {
+            "type": "shell",
+            // Icon: Amber (#FFBF00) | Label: Red
+            "key": "\u001b[38;2;255;191;0m󱆃 \u001b[38;2;255;0;0mShell"
+        },
+        {
+            "type": "wm",
+            // Icon: Electric Yellow (#FFFF00) | Label: Red
+            "key": "\u001b[38;2;255;255;0m \u001b[38;2;255;0;0mWM"
+        },
+        {
+            "type": "terminal",
+            // Icon: Bright White-Yellow (#FFFACD) | Label: Red
+            "key": "\u001b[38;2;255;250;205m󰆍 \u001b[38;2;255;0;0mTerminal"
+        },
+
+        "break",
+
+        {
+            "type": "colors",
+            "symbol": "circle"
+        }
+    ]
+}
